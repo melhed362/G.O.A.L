@@ -1,5 +1,6 @@
 // ===== INSTÄLLNINGAR – ändra här =====
-const FORM_ENDPOINT = "https://formspree.io/f/DITT-FORMULAR-ID"; // Ditt Formspree-ID
+// Brevo-formuläret "Väntelista G.O.A.L" (lista: Väntelista, dubbel bekräftelse)
+const BREVO_FORM_URL = "https://c833e7eb.sibforms.com/serve/MUIFAJQEnAJQcJ6dVRjLw6tnfmfMwnW88MTAZ0E1MY8TtG3jLUnMpqcr0BLbRsRjwwRYmdc-UR4gZqsVH0F-xJAlCqigz6zcEuWidcsyRnkdbVdmHjKyzhUAqmjfgt2cF1yGtH-KGWlkzkYLOYrc-EsFbtHM4wUa4n6c0hTOlLZU91uXHamjyKUFo_z9IrMfQz2YBK3_zixm5TQX6w==";
 const LAUNCH_DATE = "";            // T.ex. "2027-03-01T18:00:00+01:00". Tom = ingen nedräkning visas.
 const CONTACT_EMAIL = "[DIN-EPOST]"; // T.ex. "info@dindoman.se"
 const INSTAGRAM_URL = "https://www.instagram.com/";  // Länk till ditt Instagram
@@ -25,10 +26,9 @@ const TEXT = {
     contact: "Kontakt",
     errEmail: "Skriv en giltig e-postadress.",
     errConsent: "Kryssa i rutan för att få mejlet.",
-    errSetup: "Formuläret är inte kopplat än. Försök igen senare.",
     errSend: "Något gick fel. Försök igen om en stund.",
     sending: "Skickar…",
-    ok: "Klart! Du står på listan och får veta först. 🤫"
+    ok: "Nästan klart! Kolla din mejl och bekräfta din adress. 🤫"
   },
   en: {
     eyebrow: "Coming soon",
@@ -49,10 +49,9 @@ const TEXT = {
     contact: "Contact",
     errEmail: "Enter a valid email address.",
     errConsent: "Tick the box to get the email.",
-    errSetup: "The form isn't connected yet. Please try again later.",
     errSend: "Something went wrong. Please try again in a moment.",
     sending: "Sending…",
-    ok: "Done! You're on the list and will be the first to know. 🤫"
+    ok: "Almost done! Check your email and confirm your address. 🤫"
   }
 };
 
@@ -112,17 +111,13 @@ form.addEventListener("submit", async e => {
   const consent = document.getElementById("consent").checked;
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return show(t("errEmail"), false);
   if (!consent) return show(t("errConsent"), false);
-  if (FORM_ENDPOINT.includes("DITT-FORMULAR-ID")) return show(t("errSetup"), false);
-
   submit.disabled = true;
   submit.textContent = t("sending");
   try {
-    const res = await fetch(FORM_ENDPOINT, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "Accept": "application/json" },
-      body: JSON.stringify({ email, language: lang, consent: "yes", source: "waitlist" })
-    });
-    if (!res.ok) throw new Error("bad response");
+    // Brevo tar emot formuläret som vanliga formulärfält. Svaret går inte att läsa
+    // från en annan domän, så vi skickar med "no-cors" och visar klart-meddelandet.
+    const body = new URLSearchParams({ EMAIL: email, email_address_check: "", locale: "en" });
+    await fetch(BREVO_FORM_URL, { method: "POST", mode: "no-cors", body });
     form.reset();
     show(t("ok"), true);
   } catch (err) {
