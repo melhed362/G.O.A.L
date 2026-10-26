@@ -30,7 +30,7 @@ const TEXT = {
     errConsent: "Kryssa i rutan för att få mejlet.",
     errSend: "Något gick fel. Försök igen om en stund.",
     sending: "Skickar…",
-    ok: "Nästan klart! Kolla din mejl och bekräfta din adress. 🤫"
+    ok: "Nästan klart! Kolla din mejl och bekräfta din adress. Hittar du inget mejl? Kolla skräpposten och papperskorgen. 🤫"
   },
   en: {
     eyebrow: "Coming soon",
@@ -54,7 +54,7 @@ const TEXT = {
     errConsent: "Tick the box to get the email.",
     errSend: "Something went wrong. Please try again in a moment.",
     sending: "Sending…",
-    ok: "Almost done! Check your email and confirm your address. 🤫"
+    ok: "Almost done! Check your email and confirm your address. Can't find it? Check your spam and junk folders. 🤫"
   }
 };
 
