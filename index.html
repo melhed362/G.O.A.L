@@ -2,95 +2,207 @@
 <html lang="sv">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>G.O.A.L – Trasiga skor? Vi har en plan.</title>
-  <meta name="description" content="Något kommer som räddar dina fotbollsskor. Skriv upp dig och få veta först.">
+  <meta name="description" content="Något kommer som räddar dina fotbollsskor. Skriv upp dig på väntelistan och få veta först när G.O.A.L släpper det.">
   <meta property="og:title" content="G.O.A.L – Trasiga skor? Vi har en plan.">
   <meta property="og:description" content="Något kommer som räddar dina fotbollsskor. Skriv upp dig och få veta först.">
   <meta property="og:type" content="website">
-  <meta property="og:locale" content="sv_SE">
-  <meta property="og:image" content="bilder/delning.jpg">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="theme-color" content="#0A0A0A">
+  <meta name="theme-color" content="#FFFFFF">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Instrument+Sans:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="top">
-    <div class="wrap top-row">
-      <a class="logo" href="./" aria-label="G.O.A.L startsida">G<i>.</i>O<i>.</i>A<i>.</i>L</a>
-      <div class="lang" role="group" aria-label="Språk / Language">
-        <button type="button" data-lang="sv" aria-pressed="true">SV</button>
-        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+  <a class="skip" href="#vantelista" data-i18n="skip">Hoppa till väntelistan</a>
+
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="logo" href="./" aria-label="G.O.A.L">G.O.A.L</a>
+      <nav class="nav-links" aria-label="Meny">
+        <a href="#problemet" data-i18n="navProblem">Problemet</a>
+        <a href="#grundaren" data-i18n="navFounder">Grundaren</a>
+        <a href="#tiktok">TikTok</a>
+      </nav>
+      <div class="nav-right">
+        <div class="lang" role="group" aria-label="Språk / Language">
+          <button type="button" data-lang="sv" aria-pressed="true">SV</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <a class="btn btn-small" href="#vantelista" data-i18n="navCta">Väntelistan</a>
       </div>
     </div>
   </header>
 
   <main>
-    <section class="hero">
-      <img class="hero-bg" src="bilder/sko.jpg" alt="" onerror="this.remove()">
-      <div class="hero-shade" aria-hidden="true"></div>
-      <div class="wrap hero-text">
-        <p class="eyebrow" data-i18n="eyebrow">Kommer snart</p>
-        <h1><span data-i18n="title1">Trasiga skor?</span><br><span class="accent" data-i18n="title2">Vi har en plan.</span></h1>
-        <p class="lead" data-i18n="lead">Något kommer som räddar dina fotbollsskor. Skriv upp dig och få veta först.</p>
+    <!-- HERO -->
+    <section class="hero" id="vantelista">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="pill"><span class="dot" aria-hidden="true"></span><span data-i18n="eyebrow">Kommer snart</span></p>
+          <h1>
+            <span data-i18n="h1a">Trasiga skor?</span>
+            <span class="h1-second" data-i18n="h1b">Vi har en plan.</span>
+          </h1>
+          <p class="lead" data-i18n="lead">Något kommer som räddar dina fotbollsskor. Skriv upp dig på väntelistan och få veta först.</p>
 
-        <form class="signup" id="signup" novalidate>
-          <label class="sr" for="email" data-i18n="emailLabel">Din e-postadress</label>
-          <div class="signup-row">
-            <input id="email" name="email" type="email" autocomplete="email" maxlength="255" required data-i18n-placeholder="emailPlaceholder" placeholder="Din e-post">
-            <button type="submit" id="submit" data-i18n="button">Skriv upp mig</button>
+          <div class="countdown" id="countdown" hidden>
+            <p class="cd-label" id="cd-label" data-i18n="cdLabel">Släpps om</p>
+            <div class="cd-units">
+              <div><span id="cd-days">--</span><small data-i18n="days">dagar</small></div>
+              <div><span id="cd-hours">--</span><small data-i18n="hours">tim</small></div>
+              <div><span id="cd-mins">--</span><small data-i18n="mins">min</small></div>
+              <div><span id="cd-secs">--</span><small data-i18n="secs">sek</small></div>
+            </div>
           </div>
-          <label class="consent">
-            <input id="consent" name="consent" type="checkbox" required>
-            <span><span data-i18n="consent">Jag vill få mejl från G.O.A.L och har läst</span> <a href="integritet.html" data-i18n="privacyLink">integritetspolicyn</a>.</span>
-          </label>
-          <p class="msg" id="msg" role="status" aria-live="polite"></p>
-        </form>
+
+          <form class="signup" id="signup" novalidate>
+            <label class="sr" for="email" data-i18n="emailLabel">Din e-postadress</label>
+            <div class="signup-row">
+              <input id="email" name="email" type="email" autocomplete="email" required data-i18n-placeholder="emailPlaceholder" placeholder="din@epost.se">
+              <button class="btn" type="submit" id="submit" data-i18n="button">Skriv upp mig</button>
+            </div>
+            <label class="consent">
+              <input id="consent" name="consent" type="checkbox" required>
+              <span><span data-i18n="consent">Jag vill få ett mejl när det släpps. Läs vår</span> <a href="integritet.html" data-i18n="privacyLink">integritetspolicy</a>.</span>
+            </label>
+            <p class="msg" id="msg" role="status" aria-live="polite"></p>
+          </form>
+
+          <ul class="assure">
+            <li data-i18n="assure1">Gratis att skriva upp sig</li>
+            <li data-i18n="assure2">Inget spam</li>
+            <li data-i18n="assure3">Avregistrera när du vill</li>
+          </ul>
+        </div>
+
+        <figure class="hero-art" aria-hidden="true">
+          <svg viewBox="0 0 600 340" class="boot">
+            <defs>
+              <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+                <path d="M24 0H0V24" fill="none" class="grid-line"/>
+              </pattern>
+            </defs>
+            <rect x="0" y="0" width="600" height="340" fill="url(#grid)" class="grid-bg"/>
+            <!-- gap at the toe -->
+            <path class="gap" d="M452 196 C492 202 528 206 546 212 L548 226 C520 232 488 234 452 232 Z"/>
+            <!-- upper -->
+            <path class="ink" d="M86 238 C70 200 66 150 90 116 C102 100 124 94 150 94 L214 96 C232 98 244 106 254 118 L360 166 C410 186 470 196 512 202 C536 205 548 208 546 212"/>
+            <!-- heel counter -->
+            <path class="ink thin" d="M90 150 C110 156 124 174 128 200"/>
+            <!-- collar -->
+            <path class="ink thin" d="M150 94 C170 112 196 120 222 118"/>
+            <!-- laces -->
+            <g class="ink thin">
+              <path d="M262 128 L250 142"/><path d="M286 138 L274 152"/><path d="M310 149 L298 163"/><path d="M334 159 L322 173"/>
+            </g>
+            <!-- swoosh-free side stitching -->
+            <path class="ink stitch" d="M150 214 C230 206 330 202 430 204"/>
+            <!-- sole plate -->
+            <path class="ink" d="M86 238 L440 236 C486 236 522 234 548 226"/>
+            <path class="ink thin" d="M92 250 L446 248 C490 248 520 244 540 236"/>
+            <!-- studs -->
+            <g class="stud">
+              <rect x="118" y="250" width="22" height="16" rx="4"/>
+              <rect x="178" y="250" width="22" height="16" rx="4"/>
+              <rect x="318" y="249" width="22" height="16" rx="4"/>
+              <rect x="388" y="249" width="22" height="16" rx="4"/>
+              <rect x="458" y="246" width="22" height="16" rx="4"/>
+            </g>
+            <!-- callout -->
+            <circle class="ping" cx="520" cy="219" r="10"/>
+            <circle class="ping-core" cx="520" cy="219" r="4"/>
+            <path class="callout-line" d="M520 205 L520 92 L470 92"/>
+          </svg>
+          <figcaption class="callout"><span data-i18n="callout">Här börjar det.</span></figcaption>
+        </figure>
       </div>
     </section>
 
-    <section class="wrap narrow" id="countdownSection" hidden>
-      <p class="eyebrow" data-i18n="countdown">Nedräkning</p>
-      <div class="countdown">
-        <div><span id="cd-days">--</span><small data-i18n="days">Dagar</small></div>
-        <div><span id="cd-hours">--</span><small data-i18n="hours">Tim</small></div>
-        <div><span id="cd-mins">--</span><small data-i18n="mins">Min</small></div>
-        <div><span id="cd-secs">--</span><small data-i18n="secs">Sek</small></div>
+    <!-- PROBLEM -->
+    <section class="problem" id="problemet">
+      <div class="wrap">
+        <p class="kicker" data-i18n="problemKicker">Problemet</p>
+        <h2 data-i18n="problemTitle">Ett litet glapp ska inte kosta ett nytt par skor.</h2>
+        <div class="stats">
+          <div class="stat">
+            <span class="stat-num" data-i18n="s1Big">Tån</span>
+            <p data-i18n="s1">Där nästan alla fotbollsskor släpper först. Den böjs vid varje steg och tar emot varje skott.</p>
+          </div>
+          <div class="stat">
+            <span class="stat-num" data-i18n="s2Big">3 000 kr</span>
+            <p data-i18n="s2">Vad ett nytt par kan kosta. Ofta är resten av skon nästan helt ny.</p>
+          </div>
+          <div class="stat">
+            <span class="stat-num">0</span>
+            <p data-i18n="s3">Antal skor du borde behöva slänga för ett litet glapp vid tån.</p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="wrap facts" aria-label="Problemet">
-      <div class="fact">
-        <strong data-i18n="f1Big">TÅN</strong>
-        <p data-i18n="f1">Där nästan alla fotbollsskor släpper först.</p>
-      </div>
-      <div class="fact">
-        <strong data-i18n="f2Big">3 000 KR</strong>
-        <p data-i18n="f2">Vad ett par nya skor kan kosta.</p>
-      </div>
-      <div class="fact">
-        <strong>0</strong>
-        <p data-i18n="f3">Antal skor du borde behöva slänga för ett litet glapp.</p>
+    <!-- TEASER -->
+    <section class="teaser">
+      <div class="wrap teaser-card">
+        <div class="teaser-mark" aria-hidden="true">?</div>
+        <div class="teaser-body">
+          <p class="kicker" data-i18n="teaserKicker">Något är på väg</p>
+          <h2 data-i18n="teaserTitle">Vi kan inte säga allt än. Men det här kan vi säga.</h2>
+          <ul class="hints">
+            <li><span class="hint-n">01</span><span data-i18n="hint1">Gjort för fotbollsskor, inte för vilka skor som helst.</span></li>
+            <li><span class="hint-n">02</span><span data-i18n="hint2">Fungerar på skorna du redan har.</span></li>
+            <li><span class="hint-n">03</span><span data-i18n="hint3">Släpps inför nästa säsong. Väntelistan får veta först.</span></li>
+          </ul>
+          <a class="btn" href="#vantelista" data-i18n="teaserCta">Skriv upp mig</a>
+        </div>
       </div>
     </section>
 
-    <section class="wrap narrow follow">
-      <h2 data-i18n="followTitle">Följ resan</h2>
-      <p data-i18n="followText">Vi visar allt på TikTok och Instagram innan det släpps.</p>
-      <div class="social">
-        <a id="ttLink" href="https://www.tiktok.com/@g.o.a.l1" target="_blank" rel="noopener">TikTok</a>
-        <a id="igLink" href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a>
+    <!-- FOUNDER -->
+    <section class="founder" id="grundaren">
+      <div class="wrap founder-grid">
+        <div class="monogram" aria-hidden="true"><span>MH</span></div>
+        <div class="founder-text">
+          <p class="kicker" data-i18n="founderKicker">Grundaren</p>
+          <h2 data-i18n="founderTitle">Från omklädningsrummet, inte från ett kontor.</h2>
+          <p data-i18n="founder1">Jag heter Melwin Hedman och spelar elitfotboll i IFK Göteborg. Jag har också representerat Sveriges ungdomslandslag.</p>
+          <p data-i18n="founder2">Varje säsong ser jag samma sak: skor som nästan är nya åker i soporna för att tån har släppt. Lagkompisar tejpar dem, köper nya eller spelar i trasiga skor. Det är dyrt och onödigt.</p>
+          <p data-i18n="founder3">Därför startade jag G.O.A.L. Vi gör saker som fotbollsspelare faktiskt behöver.</p>
+          <p class="sign">Melwin Hedman <span data-i18n="founderRole">· Grundare, G.O.A.L</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TIKTOK -->
+    <section class="tiktok" id="tiktok">
+      <div class="wrap tiktok-card">
+        <div>
+          <p class="kicker kicker-light" data-i18n="ttKicker">Följ resan</p>
+          <h2 data-i18n="ttTitle">Vi visar allt på TikTok innan det släpps.</h2>
+          <p class="tt-text" data-i18n="ttText">Trasiga skor, tester, lagkompisar och allt som händer på vägen mot lanseringen.</p>
+        </div>
+        <div class="tt-side">
+          <p class="tt-handle">@g.o.a.l1</p>
+          <p class="tt-stat"><strong>30 000+</strong> <span data-i18n="ttFollowers">följare</span></p>
+          <div class="tt-buttons">
+            <a class="btn btn-light" id="ttLink" href="https://www.tiktok.com/@g.o.a.l1" target="_blank" rel="noopener" data-i18n="ttCta">Följ på TikTok</a>
+            <a class="btn btn-ghost" id="igLink" href="#" target="_blank" rel="noopener" hidden>Instagram</a>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="foot">
-    <div class="wrap">
-      <p>© <span id="year">2026</span> G.O.A.L · <span data-i18n="contact">Kontakt</span>: <span id="contactEmail">[DIN-EPOST]</span></p>
-      <p><a href="integritet.html" data-i18n="privacyLinkCap">Integritetspolicy</a></p>
+    <div class="wrap foot-grid">
+      <a class="logo" href="./">G.O.A.L</a>
+      <p class="foot-tag" data-i18n="footTag">Gjort av fotbollsspelare, för fotbollsspelare.</p>
+      <nav class="foot-links" aria-label="Sidfot">
+        <a href="integritet.html" data-i18n="privacyLinkCap">Integritetspolicy</a>
+        <a id="contactLink" href="#" hidden></a>
+      </nav>
+      <p class="foot-copy">© <span id="year">2026</span> G.O.A.L</p>
     </div>
   </footer>
 
