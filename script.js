@@ -1,22 +1,24 @@
 // ===== INSTÄLLNINGAR – ändra här =====
 // Brevo-formuläret "Väntelista G.O.A.L" (lista: Väntelista, dubbel bekräftelse)
 const BREVO_FORM_URL = "https://c833e7eb.sibforms.com/serve/MUIFAJQEnAJQcJ6dVRjLw6tnfmfMwnW88MTAZ0E1MY8TtG3jLUnMpqcr0BLbRsRjwwRYmdc-UR4gZqsVH0F-xJAlCqigz6zcEuWidcsyRnkdbVdmHjKyzhUAqmjfgt2cF1yGtH-KGWlkzkYLOYrc-EsFbtHM4wUa4n6c0hTOlLZU91uXHamjyKUFo_z9IrMfQz2YBK3_zixm5TQX6w==";
-const LAUNCH_DATE = "";            // T.ex. "2027-03-01T18:00:00+01:00". Tom = ingen nedräkning visas.
+const LAUNCH_DATE = "2026-12-01T18:00:00+01:00"; // Lanseringsdatum. Tom "" = ingen nedräkning visas.
 const CONTACT_EMAIL = "[DIN-EPOST]"; // T.ex. "info@dindoman.se"
 const INSTAGRAM_URL = "https://www.instagram.com/";  // Länk till ditt Instagram
+const TIKTOK_URL = "https://www.tiktok.com/@g.o.a.l1"; // Länk till TikTok
 // =====================================
 
 const TEXT = {
   sv: {
     eyebrow: "Kommer snart",
-    title: "Trasiga skor? Vi har en plan.",
+    title1: "Trasiga skor?", title2: "Vi har en plan.",
     lead: "Något kommer som räddar dina fotbollsskor. Skriv upp dig och få veta först.",
-    days: "dagar", hours: "timmar", mins: "minuter",
+    countdown: "Nedräkning",
+    days: "Dagar", hours: "Tim", mins: "Min", secs: "Sek",
     emailLabel: "Din e-postadress",
-    emailPlaceholder: "din@epost.se",
+    emailPlaceholder: "Din e-post",
     button: "Skriv upp mig",
-    consent: "Jag vill få ett mejl när det släpps. Läs vår",
-    privacyLink: "integritetspolicy",
+    consent: "Jag vill få mejl från G.O.A.L och har läst",
+    privacyLink: "integritetspolicyn",
     privacyLinkCap: "Integritetspolicy",
     f1Big: "TÅN", f1: "Där nästan alla fotbollsskor släpper först.",
     f2Big: "3 000 KR", f2: "Vad ett par nya skor kan kosta.",
@@ -32,13 +34,14 @@ const TEXT = {
   },
   en: {
     eyebrow: "Coming soon",
-    title: "Broken boots? We have a plan.",
+    title1: "Broken boots?", title2: "We have a plan.",
     lead: "Something is coming to save your football boots. Join the list and be the first to know.",
-    days: "days", hours: "hours", mins: "minutes",
+    countdown: "Countdown",
+    days: "Days", hours: "Hrs", mins: "Min", secs: "Sec",
     emailLabel: "Your email address",
-    emailPlaceholder: "you@email.com",
+    emailPlaceholder: "Your email",
     button: "Join the list",
-    consent: "I want an email when it drops. Read our",
+    consent: "I want emails from G.O.A.L and have read the",
     privacyLink: "privacy policy",
     privacyLinkCap: "Privacy policy",
     f1Big: "THE TOE", f1: "Where almost every football boot comes loose first.",
@@ -76,8 +79,8 @@ document.querySelectorAll(".lang button").forEach(b => {
   });
 });
 
-// Hero image: show the fallback if bilder/sko.jpg doesn't exist yet
-const heroImg = document.getElementById("heroImg");
+// Hero image: remove it if bilder/sko.jpg doesn't exist yet
+const heroImg = document.querySelector(".hero-bg");
 if (heroImg && heroImg.complete && heroImg.naturalWidth === 0) heroImg.remove();
 
 // Countdown
@@ -85,17 +88,18 @@ function startCountdown() {
   if (!LAUNCH_DATE) return;
   const end = new Date(LAUNCH_DATE).getTime();
   if (isNaN(end)) return;
-  const box = document.getElementById("countdown");
+  const box = document.getElementById("countdownSection");
   const pad = n => String(n).padStart(2, "0");
   const tick = () => {
     const diff = Math.max(0, end - Date.now());
     document.getElementById("cd-days").textContent = pad(Math.floor(diff / 86400000));
     document.getElementById("cd-hours").textContent = pad(Math.floor(diff / 3600000) % 24);
     document.getElementById("cd-mins").textContent = pad(Math.floor(diff / 60000) % 60);
+    document.getElementById("cd-secs").textContent = pad(Math.floor(diff / 1000) % 60);
   };
   box.hidden = false;
   tick();
-  setInterval(tick, 30000);
+  setInterval(tick, 1000);
 }
 
 // Waitlist form
@@ -131,6 +135,7 @@ form.addEventListener("submit", async e => {
 document.getElementById("year").textContent = new Date().getFullYear();
 document.getElementById("contactEmail").textContent = CONTACT_EMAIL;
 document.getElementById("igLink").href = INSTAGRAM_URL;
+document.getElementById("ttLink").href = TIKTOK_URL;
 
 applyLang();
 startCountdown();
