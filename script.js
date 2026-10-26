@@ -1,10 +1,10 @@
 // ===== INSTÄLLNINGAR – ändra här =====
 // Brevo-formuläret "Väntelista G.O.A.L" (lista: Väntelista, dubbel bekräftelse)
 const BREVO_FORM_URL = "https://c833e7eb.sibforms.com/serve/MUIFAJQEnAJQcJ6dVRjLw6tnfmfMwnW88MTAZ0E1MY8TtG3jLUnMpqcr0BLbRsRjwwRYmdc-UR4gZqsVH0F-xJAlCqigz6zcEuWidcsyRnkdbVdmHjKyzhUAqmjfgt2cF1yGtH-KGWlkzkYLOYrc-EsFbtHM4wUa4n6c0hTOlLZU91uXHamjyKUFo_z9IrMfQz2YBK3_zixm5TQX6w==";
-const LAUNCH_DATE = "2026-12-01T18:00:00+01:00"; // Lanseringsdatum. Tom "" = ingen nedräkning visas.
+const LAUNCH_DATE = ""; // Nedräkningen är borttagen från sidan.
 const CONTACT_EMAIL = "";   // T.ex. "info@dindoman.se" – tom = visas inte
 const INSTAGRAM_URL = "";   // T.ex. "https://www.instagram.com/goalguards" – tom = visas inte
-const TIKTOK_URL = "https://www.tiktok.com/@g.o.a.l1";
+const TIKTOK_URL = "https://www.tiktok.com/@g.o.a.lgear";
 // =====================================
 
 const TEXT = {
@@ -12,7 +12,7 @@ const TEXT = {
     skip: "Hoppa till väntelistan",
     navProblem: "Problemet", navFounder: "Grundaren", navCta: "Väntelistan",
     eyebrow: "Kommer snart",
-    h1a: "Trasiga skor?", h1b: "Vi har en plan.",
+    h1a: "Trasiga skor?", h1b: "Vi har lösningen.",
     lead: "Något kommer som räddar dina fotbollsskor. Skriv upp dig på väntelistan och få veta först.",
     emailLabel: "Din e-postadress", emailPlaceholder: "din@epost.se",
     button: "Skriv upp mig",
@@ -54,7 +54,7 @@ const TEXT = {
     skip: "Skip to the waitlist",
     navProblem: "The problem", navFounder: "Founder", navCta: "Waitlist",
     eyebrow: "Coming soon",
-    h1a: "Broken boots?", h1b: "We have a plan.",
+    h1a: "Broken boots?", h1b: "We have the solution.",
     lead: "Something is coming to save your football boots. Join the waitlist and be the first to know.",
     emailLabel: "Your email address", emailPlaceholder: "you@email.com",
     button: "Join the list",
